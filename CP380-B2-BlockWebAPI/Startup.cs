@@ -12,6 +12,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Reflection;
 using System.IO;
+using CP380_B2_BlockWebAPI.Models; 
 
 namespace CP380_B2_BlockWebAPI
 {
@@ -24,13 +25,9 @@ namespace CP380_B2_BlockWebAPI
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //
-            // TODO:
-            //  add singletons
-            //  
+            services.AddSingleton<BlockSummary.Blocks>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -41,7 +38,6 @@ namespace CP380_B2_BlockWebAPI
             });
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
